@@ -70,4 +70,4 @@ Calculate average value in the past.
 
 ## 4. Final
 Combination of Stock MA and cosine similiarity 3 month.    
-Read : [final_code](https://github.com/sehyunpark99/stock_price/blob/main/final_code.ipynb)
+Read : [final_code.ipynb](https://github.com/sehyunpark99/stock_price/blob/main/final_code.ipynb)

@@ -21,38 +21,53 @@
 - Evaluation Score   
 <img width="668" alt="스크린샷 2023-07-29 오후 9 47 10" src="https://github.com/sehyunpark99/stock_price/assets/85481704/8dc4e0e2-961a-462e-8237-5f37adcb429d">
 
-<b>Sharpe Index</b> : (연율화된 총자산 최종 수익률 - 무위험 수익률) / 총자산 일간 수익률 변동성    
-  참고파일 : calculate_sharpe.ipynb
+### <예선 평가지표> 
+* Sharpe Index : <b>(연율화된 총자산 최종 수익률 - 무위험 수익률) / 총자산 일간 수익률 변동성 </b>   
+  감수한 위험 대비 달성하는 수익을 나타내는 지표로, 다른 상품과의 샤프지수와 비교로 사용하는 것이 알맞음.   
+  &#8251;Read more : [calculate_sharpe.ipynb](https://github.com/sehyunpark99/stock_price/blob/main/calculate_sharpe.ipynb)
 
 ## 2. Model
 ### (1) ARIMA    
-#간략한설명#
+Combination of AR(AutoRegression) and MA(MovingAverage) model. For stationarity, log transformation and differencing (max 5 times) are used. Sample prediction plot is show below.
+![image](https://github.com/sehyunpark99/stock_price/assets/85481704/2deaedac-eb26-4375-adcc-91b24d692bf3)    
+
 &#8251;Read more : [ARIMA_submission.ipynb](https://github.com/sehyunpark99/stock_price/blob/main/ARIMA_submission.ipynb)
 
 ### (2) LSTM
-#간략한설명#
-* Prediction Plot
-![image](https://github.com/sehyunpark99/stock_price/assets/85481704/7a2349cf-cb44-49d2-9b58-a7cf4fb99cb2)
+Long Short-Term Memory model. It includes long-term data in prediction, showing high performance when strong long-term dependencies exists.    
+![image](https://github.com/sehyunpark99/stock_price/assets/85481704/7a2349cf-cb44-49d2-9b58-a7cf4fb99cb2)    
+&#8251;Read more : [LSTM_submission.ipynb](https://github.com/sehyunpark99/stock_price/blob/main/LSTM_submission.ipynb)  
 
-&#8251;Read more : [LSTM_submission.ipynb](https://github.com/sehyunpark99/stock_price/blob/main/LSTM_submission.ipynb)
 ### (3) Cosine similarity
+Find similar pattern in the past and assume it would appear again.    
+![스크린샷 2023-07-31 오전 10 30 32](https://github.com/sehyunpark99/stock_price/assets/85481704/2f6731bd-02b8-467e-8401-870f1460932e)
+
 
 ### (4) Moving Average
+Calculate average value in the past.     
+    
 
 ## 3. Result
+- Single Model
 
 |Model|Sharpe Index|annualized return|
 |:-|:-:|:-:|
 |stock_MA|0.21|0.17|
-|cosine sim|0.377|0.18|
+|cosine sim 1Month|0.377|0.18|
+|cosine sim 3Month |0.377|0.18|
 |lstm|-0.2048|-0.1176|
 |arima|0.28|0.83|
+
+- Combination
+
+|Model|Sharpe Index|annualized return|
+|:-|:-:|:-:|
 |cos & sharpe|0.61|0.26|
-|stockMA&cos|0.71|0.26|
+|stockMA&cosine sim 1Month|0.71|0.26|
+|stockMA&cosine sim 3Month|0.11|0.08|
 |lstm&cos|0.27|0.81|
 |arima&cos|0.27|0.60|
 
-### LSTM + Cos ensemble model 
-** 수식 ** 
-
-## 
+## 4. Final
+Combination of Stock MA and cosine similiarity 3 month.    
+Read : [final_code](https://github.com/sehyunpark99/stock_price/blob/main/final_code.ipynb)
